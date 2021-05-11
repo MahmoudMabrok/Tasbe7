@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:seb7a/screens/praise.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class AppDrawer extends StatelessWidget {
 
@@ -13,16 +16,33 @@ class AppDrawer extends StatelessWidget {
         return AlertDialog(
           //title: Text('TextField in Dialog'),
           content: Container(
-            height: 110,
+            height: 115,
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.only(right: 10 , left: 10),
             child: Column(
               children: [
                 TextField(
                   controller: praiseNameController,
-                  decoration: InputDecoration(hintText: "الاسم"),
+                  decoration: InputDecoration(
+                      hintText: "dialogTextFieldName".tr().toString(),
+                    suffixIcon: IconButton(
+                      onPressed: () => praiseNameController.clear(),
+                      icon: Icon(Icons.clear),
+                    ),
+                  ),
                 ),
                 TextField(
                   controller: praiseValueController,
-                  decoration: InputDecoration(hintText: "القيمة"),
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(4),
+                  ],
+                  decoration: InputDecoration(
+                      hintText: "dialogTextFieldValue".tr().toString(),
+                      suffixIcon: IconButton(
+                      onPressed: () => praiseNameController.clear(),
+                      icon: Icon(Icons.clear),
+                    ),
+                  ),
                   keyboardType: TextInputType.number,
                 ),
               ],
@@ -30,17 +50,17 @@ class AppDrawer extends StatelessWidget {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('الغاء'),
+              child: Text('dialogCancleButton'.tr().toString()),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             FlatButton(
-              child: Text('اضافة'),
+              child: Text('dialogAddButton'.tr().toString()),
               onPressed: () {
                 if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
                   final snackBar = SnackBar(
-                    content: Text(''),
+                    content: Text('addPraise'.tr().toString()),
                     duration: Duration(seconds: 5),
                   );
                   // Find the ScaffoldMessenger in the widget tree
@@ -53,6 +73,7 @@ class AppDrawer extends StatelessWidget {
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString())))
@@ -77,13 +98,13 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.black54,
+        //color: Colors.black54,
         child: Column(
           children: <Widget>[
             SizedBox(height: 30,),
             ListTile(
                 trailing: Icon(Icons.add),
-                title: Text('أضافة عداد',style: TextStyle(color: Colors.black),),
+                title: Text('addPraise'.tr().toString(),style: TextStyle(color: Colors.black),),
                 onTap: ()=>_displayTextInputDialog(context)
             ),
             SizedBox(height: 5,),

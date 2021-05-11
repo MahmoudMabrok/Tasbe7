@@ -19,26 +19,50 @@ class _PraiseState extends State<Praise> {
         title: Text(widget.name),
       ),
       body: Container(
-        padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width/2),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/image/praise.jpeg'), fit: BoxFit.fill,),
+          //shape: BoxShape.circle,
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(widget.value.toString() , style: TextStyle(color: Colors.black , fontSize: 100 , fontWeight: FontWeight.bold),),
-            RawMaterialButton(
-              onPressed: () {},
-              elevation: 2.0,
-              fillColor: Colors.white,
-              child: Icon(
-                Icons.pause,
-                size: 35.0,
+            SizedBox(height: 40,),
+            //Max value is = million
+            Center(
+              child: Text(widget.value.toString() , style: TextStyle(color: Colors.white , fontSize: 80 , fontWeight: FontWeight.bold),),
+            ),
+            SizedBox(height: 100,),
+            Container(
+              width: 200,
+              height: 200,
+              child: MaterialButton(
+                shape: CircleBorder(side: BorderSide(width: 1,)),
+                color: Colors.green,
+                onPressed: (){},
               ),
-              padding: EdgeInsets.all(15.0),
-              shape: CircleBorder(),
-            )
+            ),
+            SizedBox(height: 50,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(icon: Icon(Icons.delete),color: Colors.grey  ,iconSize: 50, onPressed: () {}),
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: MaterialButton(
+                      shape: CircleBorder(side: BorderSide(width: 1,)),
+                      color: Colors.red,
+                      onPressed: (){},
+                    ),
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.only(right: 30 , left: 30),
+            ),
           ],
         ),
-      ),
+      )
     );
   }
 }
