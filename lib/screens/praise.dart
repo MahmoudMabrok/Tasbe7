@@ -30,6 +30,7 @@ class _PraiseState extends State<Praise> {
               elevation: 2.0,
               fillColor: Colors.white,
               child: Icon(
+                Icons.pause,
                 size: 35.0,
               ),
               padding: EdgeInsets.all(15.0),
