@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seb7a/screens/praise.dart';
 
 class AppDrawer extends StatelessWidget {
 
@@ -37,21 +38,25 @@ class AppDrawer extends StatelessWidget {
             FlatButton(
               child: Text('اضافة'),
               onPressed: () {
-                String value = praiseNameController.value.text.toString();
                 if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
                   final snackBar = SnackBar(
                     content: Text(''),
-                    action: SnackBarAction(
-                      label: 'Undo',
-                      onPressed: () {
-                        // Some code to undo the change.
-                      },
-                    ),
+                    duration: Duration(seconds: 5),
                   );
-
                   // Find the ScaffoldMessenger in the widget tree
                   // and use it to show a SnackBar.
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else if(isNumeric(praiseNameController.value.text.toString()) == true){
+                  final snackBar = SnackBar(
+                    content: Text(''),
+                    duration: Duration(seconds: 5),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString())))
+                  );
                 }
               },
             ),
