@@ -5,5 +5,11 @@
   "dialogTextFieldValue": "القيمة",
   "dialogCancleButton": "الغاء",
   "dialogAddButton": "اضافة",
-  "addPraise": "أضافة عداد"
+  "addPraise": "أضافة عداد",
+  "dialogMissingDataError": "ادخل اسم العداد و قيمه العداد",
+  "dialogPraiseValueError": "ادخل قيمه العداد بشكل صحيح",
+  "yesButton": "نعم",
+  "noButton": "لا",
+  "clearPraise": "هل تريد تصفيه العداد ؟",
+  "deletePraise": "هل تريد مسح العداد ؟"
 }

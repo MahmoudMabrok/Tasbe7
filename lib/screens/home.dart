@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text("homeAppBarTittle".tr().toString()),
+        title: Text("homeAppBarTittle".tr().toString() , style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
       body: Container(

@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:seb7a/screens/praise.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:seb7a/widgets/show_message.dart';
 
 
 class AppDrawer extends StatelessWidget {
 
   TextEditingController praiseNameController = new TextEditingController();
   TextEditingController praiseValueController = new TextEditingController();
+  String error = "";
+  RegExp numberRegExp = new RegExp("^[0-9]*\$");
 
    void _displayTextInputDialog(BuildContext context) async {
     return showDialog(
@@ -25,10 +28,6 @@ class AppDrawer extends StatelessWidget {
                   controller: praiseNameController,
                   decoration: InputDecoration(
                       hintText: "dialogTextFieldName".tr().toString(),
-                    suffixIcon: IconButton(
-                      onPressed: () => praiseNameController.clear(),
-                      icon: Icon(Icons.clear),
-                    ),
                   ),
                 ),
                 TextField(
@@ -38,10 +37,6 @@ class AppDrawer extends StatelessWidget {
                   ],
                   decoration: InputDecoration(
                       hintText: "dialogTextFieldValue".tr().toString(),
-                      suffixIcon: IconButton(
-                      onPressed: () => praiseNameController.clear(),
-                      icon: Icon(Icons.clear),
-                    ),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -59,19 +54,9 @@ class AppDrawer extends StatelessWidget {
               child: Text('dialogAddButton'.tr().toString()),
               onPressed: () {
                 if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
-                  final snackBar = SnackBar(
-                    content: Text('addPraise'.tr().toString()),
-                    duration: Duration(seconds: 5),
-                  );
-                  // Find the ScaffoldMessenger in the widget tree
-                  // and use it to show a SnackBar.
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                } else if(isNumeric(praiseNameController.value.text.toString()) == true){
-                  final snackBar = SnackBar(
-                    content: Text(''),
-                    duration: Duration(seconds: 5),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
+                } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
+                  ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
                   Navigator.pop(context);
                   Navigator.push(
@@ -87,13 +72,6 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  bool isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
-    return double.tryParse(s) != null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -105,7 +83,10 @@ class AppDrawer extends StatelessWidget {
             ListTile(
                 trailing: Icon(Icons.add),
                 title: Text('addPraise'.tr().toString(),style: TextStyle(color: Colors.black),),
-                onTap: ()=>_displayTextInputDialog(context)
+                onTap: (){
+                  Navigator.pop(context);
+                  _displayTextInputDialog(context);
+                }
             ),
             SizedBox(height: 5,),
           ],
