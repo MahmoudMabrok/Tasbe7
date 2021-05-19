@@ -11,5 +11,6 @@
   "yesButton": "نعم",
   "noButton": "لا",
   "clearPraise": "هل تريد تصفيه العداد ؟",
-  "deletePraise": "هل تريد مسح العداد ؟"
+  "deletePraise": "هل تريد مسح العداد ؟",
+  "dialogEditButton": "تعديل"
 }

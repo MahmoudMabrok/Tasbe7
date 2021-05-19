@@ -1,97 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/praise.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:seb7a/widgets/show_message.dart';
 
+class AppDrawer extends StatefulWidget {
+  List<String> praises;
+  bool isListHaveData;
 
-class AppDrawer extends StatelessWidget {
+  AppDrawer(this.praises , this.isListHaveData);
 
-  TextEditingController praiseNameController = new TextEditingController();
-  TextEditingController praiseValueController = new TextEditingController();
-  String error = "";
-  RegExp numberRegExp = new RegExp("^[0-9]*\$");
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
 
-   void _displayTextInputDialog(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          //title: Text('TextField in Dialog'),
-          content: Container(
-            height: 115,
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(right: 10 , left: 10),
-            child: Column(
-              children: [
-                TextField(
-                  controller: praiseNameController,
-                  decoration: InputDecoration(
-                      hintText: "dialogTextFieldName".tr().toString(),
-                  ),
-                ),
-                TextField(
-                  controller: praiseValueController,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(4),
-                  ],
-                  decoration: InputDecoration(
-                      hintText: "dialogTextFieldValue".tr().toString(),
-                  ),
-                  keyboardType: TextInputType.number,
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('dialogCancleButton'.tr().toString()),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            FlatButton(
-              child: Text('dialogAddButton'.tr().toString()),
-              onPressed: () {
-                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
-                  ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
-                } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
-                  ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
-                } else {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString())))
-                  );
-                }
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+class _AppDrawerState extends State<AppDrawer> {
+  int praiseValue;
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Container(
-        //color: Colors.black54,
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 30,),
-            ListTile(
-                trailing: Icon(Icons.add),
-                title: Text('addPraise'.tr().toString(),style: TextStyle(color: Colors.black),),
-                onTap: (){
-                  Navigator.pop(context);
-                  _displayTextInputDialog(context);
-                }
-            ),
-            SizedBox(height: 5,),
-          ],
-        ),
-      )
+    print(widget.isListHaveData);
+    return  Drawer(
+        child: widget.isListHaveData == true ? ListView.builder(
+          itemBuilder: (context, position) {
+            return Column(
+              children: [
+                ListTile(
+                  //leading: Icon(Icons.shop),
+                  title: Text(widget.praises[position],style: TextStyle(color: Colors.black),),
+                  onTap: (){
+                    SaveOffline.getPraisevalue(widget.praises[position]).then((value) => praiseValue = value);
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(widget.praises[position], praiseValue)));
+                  },
+                ),
+                Container(
+                  margin: const EdgeInsets.only(right: 10 , left: 10),
+                  child: Divider(
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          },
+          itemCount: widget.praises.length,
+        ) : SizedBox(),
     );
   }
 }
+

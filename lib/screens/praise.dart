@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/services.dart';
 import 'package:seb7a/helper/save_offline.dart';
+import 'package:seb7a/screens/home.dart';
+import 'package:seb7a/widgets/show_message.dart';
 
 class Praise extends StatefulWidget {
   String name;
@@ -14,6 +17,19 @@ class Praise extends StatefulWidget {
 }
 
 class _PraiseState extends State<Praise> {
+
+
+  TextEditingController praiseNameController;
+  TextEditingController praiseValueController;
+  RegExp numberRegExp = new RegExp("^[0-9]*\$");
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    praiseNameController = new TextEditingController(text: widget.name);
+    praiseValueController = new TextEditingController(text: widget.value.toString());
+  }
 
   void clearPraise(BuildContext context){
     showDialog(
@@ -28,6 +44,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value = 0;
+                      SaveOffline.savePraiseOffline(widget.name, widget.value);
                       Navigator.pop(context);
                     });
                   },
@@ -56,7 +73,8 @@ class _PraiseState extends State<Praise> {
             actions: <Widget>[
               FlatButton(
                   onPressed: (){
-
+                    SaveOffline.removePraise(widget.name);
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                   },
                   child: Text("yesButton".tr().toString())
 
@@ -72,12 +90,82 @@ class _PraiseState extends State<Praise> {
         });
   }
 
+  void editPraise(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          //title: Text('TextField in Dialog'),
+          content: Container(
+            height: 115,
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.only(right: 10 , left: 10),
+            child: Column(
+              children: [
+                TextField(
+                  controller: praiseNameController,
+                  decoration: InputDecoration(
+                    hintText: "dialogTextFieldName".tr().toString(),
+                  ),
+                ),
+                TextField(
+                  controller: praiseValueController,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(4),
+                  ],
+                  decoration: InputDecoration(
+                    hintText: "dialogTextFieldValue".tr().toString(),
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('dialogCancleButton'.tr().toString()),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            FlatButton(
+              child: Text('dialogEditButton'.tr().toString()),
+              onPressed: () {
+                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
+                  ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
+                } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
+                  ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
+                } else {
+                  SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
+                  setState(() {
+                    widget.name = praiseNameController.value.text.toString();
+                    widget.value = int.parse(praiseValueController.value.text.toString());
+                  });
+                  Navigator.pop(context);
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.name),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: ()=>editPraise(context)
+          ),
+          IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: ()=>deletePraise(context)
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -104,7 +192,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value++;
-                      SaveOffline.saveTokenOffline(widget.name, widget.value);
+                      SaveOffline.savePraiseOffline(widget.name, widget.value);
                     });
                   },
                 ),
@@ -121,7 +209,12 @@ class _PraiseState extends State<Praise> {
                       child: MaterialButton(
                         shape: CircleBorder(side: BorderSide(width: 1,)),
                         color: Colors.red,
-                        onPressed: ()=>clearPraise(context),
+                          onPressed: (){
+                            setState(() {
+                              widget.value--;
+                              SaveOffline.savePraiseOffline(widget.name, widget.value);
+                            });
+                          },
                       ),
                     ),
                   ],
