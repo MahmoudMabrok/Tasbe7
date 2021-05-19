@@ -12,5 +12,6 @@
   "noButton": "لا",
   "clearPraise": "هل تريد تصفيه العداد ؟",
   "deletePraise": "هل تريد مسح العداد ؟",
-  "dialogEditButton": "تعديل"
+  "dialogEditButton": "تعديل",
+  "dialogDuplicateDataError": "العداد مستخدم بالفعل"
 }

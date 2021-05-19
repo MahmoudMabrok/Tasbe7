@@ -18,10 +18,10 @@ class Praise extends StatefulWidget {
 
 class _PraiseState extends State<Praise> {
 
-
   TextEditingController praiseNameController;
   TextEditingController praiseValueController;
   RegExp numberRegExp = new RegExp("^[0-9]*\$");
+  bool checkPraiseExist;
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value = 0;
-                      SaveOffline.savePraiseOffline(widget.name, widget.value);
+                      SaveOffline.editPraiseValue(widget.name, widget.value);
                       Navigator.pop(context);
                     });
                   },
@@ -136,12 +136,21 @@ class _PraiseState extends State<Praise> {
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
-                  setState(() {
-                    widget.name = praiseNameController.value.text.toString();
-                    widget.value = int.parse(praiseValueController.value.text.toString());
+                  SaveOffline.ifPraiseExist(praiseNameController.value.text.toString()).then((value) {
+                    setState(() {
+                      checkPraiseExist = value;
+                    });
                   });
-                  Navigator.pop(context);
+                  if(checkPraiseExist == true){
+                    ToastMessage.showMessage('dialogDuplicateDataError'.tr().toString(), Colors.red);
+                  } else if(checkPraiseExist == false){
+                    SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
+                    setState(() {
+                      widget.name = praiseNameController.value.text.toString();
+                      widget.value = int.parse(praiseValueController.value.text.toString());
+                    });
+                    Navigator.pop(context);
+                  }
                 }
               },
             ),
@@ -159,11 +168,15 @@ class _PraiseState extends State<Praise> {
         actions: [
           IconButton(
               icon: Icon(Icons.edit),
-              onPressed: ()=>editPraise(context)
+              onPressed: (){
+                praiseNameController.clear();
+                praiseValueController.clear();
+                editPraise(context);
+              }
           ),
           IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: ()=>deletePraise(context)
+              onPressed: ()=>clearPraise(context)
           ),
         ],
       ),
@@ -192,7 +205,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value++;
-                      SaveOffline.savePraiseOffline(widget.name, widget.value);
+                      SaveOffline.editPraiseValue(widget.name , widget.value);
                     });
                   },
                 ),
@@ -212,7 +225,7 @@ class _PraiseState extends State<Praise> {
                           onPressed: (){
                             setState(() {
                               widget.value--;
-                              SaveOffline.savePraiseOffline(widget.name, widget.value);
+                              SaveOffline.editPraiseValue(widget.name, widget.value);
                             });
                           },
                       ),

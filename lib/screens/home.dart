@@ -14,10 +14,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  List<String> praisesList = [];
   TextEditingController praiseNameController = new TextEditingController();
   TextEditingController praiseValueController = new TextEditingController();
   RegExp numberRegExp = new RegExp("^[0-9]*\$");
+  bool checkPraiseExist;
 
   void addNewPraise(BuildContext context) async {
     return showDialog(
@@ -65,11 +65,18 @@ class _HomeState extends State<Home> {
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  SaveOffline.savePraiseOffline(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()));
-                  Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()))));
-                  //praiseNameController.clear();
-                  //praiseValueController.clear();
+                  SaveOffline.ifPraiseExist(praiseNameController.value.text.toString()).then((value) {
+                    setState(() {
+                      checkPraiseExist = value;
+                    });
+                  });
+                  if(checkPraiseExist == true){
+                    ToastMessage.showMessage('dialogDuplicateDataError'.tr().toString(), Colors.red);
+                  } else if(checkPraiseExist == false){
+                    SaveOffline.savePraiseOffline(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()));
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()))));
+                  }
                 }
               },
             ),
@@ -80,27 +87,20 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  void initState(){
-    // TODO: implement initState
-    super.initState();
-    getData();
-  }
-
-  void getData() async{
-    await SaveOffline.getPraiseList().then((value) => praisesList = value);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: praisesList.length <=0 ? AppDrawer(praisesList , false) : AppDrawer(praisesList , true),
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text("homeAppBarTittle".tr().toString() , style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
           IconButton(
               icon: Icon(Icons.add),
-              onPressed: ()=>addNewPraise(context)
+              onPressed: (){
+                praiseNameController.clear();
+                praiseValueController.clear();
+                addNewPraise(context);
+              }
           )
         ],
       ),

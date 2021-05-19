@@ -7,12 +7,10 @@ class SaveOffline{
     final SharedPreferences prefs = await _prefs;
     prefs.setInt(name, value);
     if(prefs.containsKey("praisesNames") == true){
-      print('True');
       List<String> praisesNames = prefs.getStringList('praisesNames');
       praisesNames.add(name);
       prefs.setStringList('praisesNames', praisesNames);
     } else {
-      print('False');
       List<String> praisesNames = [];
       praisesNames.add(name);
       prefs.setStringList('praisesNames', praisesNames);
@@ -40,9 +38,6 @@ class SaveOffline{
     List<String> praisesNames = prefs.getStringList('praisesNames');
     praisesNames.remove(name);
     prefs.setStringList('praisesNames', praisesNames);
-    for(int i=0;i<praisesNames.length;i++){
-      print(praisesNames[i]);
-    }
   }
 
   static void editPraise(String oldName , String newName , int newValue) async{
@@ -54,16 +49,32 @@ class SaveOffline{
     var index = praisesNames.indexOf(oldName);
     praisesNames.replaceRange(index, index+1, [newName]);
     prefs.setStringList('praisesNames', praisesNames);
-    print(praisesNames);
   }
 
-  static Future<int> firstTimecheck() async{
+  static void editPraiseValue(String name , int value) async{
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
+    prefs.remove(name);
+    prefs.setInt(name, value);
+  }
+
+  static Future<bool> firstTimecheck() async{
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;
     if(prefs.containsKey("praisesNames") == true){
-      return 1;
+      return true;
     } else {
-      return 0;
+      return false;
+    }
+  }
+
+  static Future<bool> ifPraiseExist(String name) async{
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
+    if(prefs.containsKey(name) == true){
+      return true;
+    } else {
+      return false;
     }
   }
 }
