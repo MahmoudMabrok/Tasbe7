@@ -1,7 +1,9 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nice_button/NiceButton.dart';
 import 'package:seb7a/helper/save_offline.dart';
+import 'package:seb7a/screens/evning_azkar.dart';
+import 'package:seb7a/screens/morning_azkar.dart';
 import 'package:seb7a/screens/praise.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:seb7a/widgets/drawer_widget.dart';
@@ -18,6 +20,8 @@ class _HomeState extends State<Home> {
   TextEditingController praiseValueController = new TextEditingController();
   RegExp numberRegExp = new RegExp("^[0-9]*\$");
   bool checkPraiseExist;
+  var firstColor = Color(0xff5b86e5), secondColor = Color(0xff36d1dc);
+
 
   void addNewPraise(BuildContext context) async {
     return showDialog(
@@ -73,9 +77,11 @@ class _HomeState extends State<Home> {
                   if(checkPraiseExist == true){
                     ToastMessage.showMessage('dialogDuplicateDataError'.tr().toString(), Colors.red);
                   } else if(checkPraiseExist == false){
-                    SaveOffline.savePraiseOffline(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()));
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()))));
+                    setState(() {
+                      SaveOffline.savePraiseOffline(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()));
+                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()))));
+                    });
                   }
                 }
               },
@@ -105,16 +111,30 @@ class _HomeState extends State<Home> {
         ],
       ),
       body:  Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            NiceButton(
+              radius: 40,
+              padding: const EdgeInsets.all(15),
+              text: "MorningAzkar".tr().toString(),
+              gradientColors: [secondColor, firstColor],
+              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MorningAzkar())),
+            ),
+            SizedBox(height: 20,),
+            NiceButton(
+              radius: 40,
+              padding: const EdgeInsets.all(15),
+              text: "EvningAzkar".tr().toString(),
+              gradientColors: [secondColor, firstColor],
+              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => EvningAzkar())),
             ),
           ],
         ),

@@ -137,12 +137,13 @@ class _PraiseState extends State<Praise> {
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
                   setState(() {
+                    SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
                     widget.name = praiseNameController.value.text.toString();
                     widget.value = int.parse(praiseValueController.value.text.toString());
+                    Navigator.pop(context);
                   });
-                  Navigator.pop(context);
+
                 }
               },
             ),
@@ -229,7 +230,7 @@ class _PraiseState extends State<Praise> {
                     ),
                   ],
                 ),
-                margin: const EdgeInsets.only(right: 30 , left: 30),
+                margin: const EdgeInsets.only(right: 10 , left: 30),
               ),
             ],
           ),
