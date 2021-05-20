@@ -51,10 +51,9 @@ class SaveOffline{
     prefs.setStringList('praisesNames', praisesNames);
   }
 
-  static void editPraiseValue(String name , int value) async{
+  static void incrementPraiseValue(String name , int value) async{
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;
-    prefs.remove(name);
     prefs.setInt(name, value);
   }
 

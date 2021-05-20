@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/home.dart';
 import 'package:seb7a/widgets/show_message.dart';
+import 'package:vibration/vibration.dart';
 
 class Praise extends StatefulWidget {
   String name;
@@ -44,7 +45,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value = 0;
-                      SaveOffline.editPraiseValue(widget.name, widget.value);
+                      SaveOffline.incrementPraiseValue(widget.name, widget.value);
                       Navigator.pop(context);
                     });
                   },
@@ -103,13 +104,13 @@ class _PraiseState extends State<Praise> {
             child: Column(
               children: [
                 TextField(
-                  controller: praiseNameController,
+                  controller: praiseNameController..text = widget.name,
                   decoration: InputDecoration(
                     hintText: "dialogTextFieldName".tr().toString(),
                   ),
                 ),
                 TextField(
-                  controller: praiseValueController,
+                  controller: praiseValueController..text = widget.value.toString(),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(4),
                   ],
@@ -136,21 +137,12 @@ class _PraiseState extends State<Praise> {
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  SaveOffline.ifPraiseExist(praiseNameController.value.text.toString()).then((value) {
-                    setState(() {
-                      checkPraiseExist = value;
-                    });
+                  SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
+                  setState(() {
+                    widget.name = praiseNameController.value.text.toString();
+                    widget.value = int.parse(praiseValueController.value.text.toString());
                   });
-                  if(checkPraiseExist == true){
-                    ToastMessage.showMessage('dialogDuplicateDataError'.tr().toString(), Colors.red);
-                  } else if(checkPraiseExist == false){
-                    SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
-                    setState(() {
-                      widget.name = praiseNameController.value.text.toString();
-                      widget.value = int.parse(praiseValueController.value.text.toString());
-                    });
-                    Navigator.pop(context);
-                  }
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -205,7 +197,9 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value++;
-                      SaveOffline.editPraiseValue(widget.name , widget.value);
+                      Vibration.vibrate(duration: 50);
+                      //HapticFeedback.heavyImpact();
+                      SaveOffline.incrementPraiseValue(widget.name , widget.value);
                     });
                   },
                 ),
@@ -224,8 +218,11 @@ class _PraiseState extends State<Praise> {
                         color: Colors.red,
                           onPressed: (){
                             setState(() {
-                              widget.value--;
-                              SaveOffline.editPraiseValue(widget.name, widget.value);
+                              Vibration.vibrate(duration: 50);
+                              if(widget.value>0){
+                                widget.value--;
+                                SaveOffline.incrementPraiseValue(widget.name, widget.value);
+                              }
                             });
                           },
                       ),
