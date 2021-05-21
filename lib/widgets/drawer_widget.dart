@@ -34,6 +34,7 @@ class _AppDrawerState extends State<AppDrawer> {
           itemBuilder: (context, position) {
             return Column(
               children: [
+                //SizedBox(height: 30,),
                 ListTile(
                   //leading: Icon(Icons.shop),
                   title: Text(praisesList[position],style: TextStyle(color: Colors.black),),

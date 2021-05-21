@@ -29,6 +29,7 @@ dependencies:
   shared_preferences: ^0.5.6+3
   flutter_launcher_icons: "^0.8.0"
   nice_button: ^0.1.7
+  hexcolor: ^2.0.3
   flutter_localizations: # Add this line
     sdk: flutter
 
@@ -61,6 +62,7 @@ flutter:
     - resources/ar-AR.json
     - assets/image/bg.jpeg
     - assets/image/praise.jpeg
+    - assets/image/minus.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

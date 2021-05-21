@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/home.dart';
 import 'package:seb7a/widgets/show_message.dart';
@@ -157,6 +158,7 @@ class _PraiseState extends State<Praise> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: HexColor("#16202A"),
         title: Text(widget.name),
         actions: [
           IconButton(
@@ -194,7 +196,7 @@ class _PraiseState extends State<Praise> {
                 height: 200,
                 child: MaterialButton(
                   shape: CircleBorder(side: BorderSide(width: 1,)),
-                  color: Colors.green,
+                  color: Colors.blueGrey,
                   onPressed: (){
                     setState(() {
                       widget.value++;
@@ -210,24 +212,19 @@ class _PraiseState extends State<Praise> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(icon: Icon(Icons.delete),color: Colors.grey  ,iconSize: 50, onPressed: ()=>deletePraise(context)),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      child: MaterialButton(
-                        shape: CircleBorder(side: BorderSide(width: 1,)),
-                        color: Colors.red,
-                          onPressed: (){
-                            setState(() {
-                              Vibration.vibrate(duration: 50);
-                              if(widget.value>0){
-                                widget.value--;
-                                SaveOffline.incrementPraiseValue(widget.name, widget.value);
-                              }
-                            });
-                          },
-                      ),
-                    ),
+                    IconButton(icon: Icon(Icons.delete_rounded),color: Colors.grey  ,iconSize: 50, onPressed: ()=>deletePraise(context)),
+                    InkWell(
+                      child: Image.asset('assets/image/minus.png' , height: 50 , width: 50,),
+                      onTap: (){
+                        setState(() {
+                          Vibration.vibrate(duration: 50);
+                          if(widget.value>0){
+                            widget.value--;
+                            SaveOffline.incrementPraiseValue(widget.name, widget.value);
+                          }
+                        });
+                      },
+                    )
                   ],
                 ),
                 margin: const EdgeInsets.only(right: 10 , left: 30),
