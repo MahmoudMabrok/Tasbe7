@@ -6,7 +6,7 @@
   "dialogCancleButton": "الغاء",
   "dialogAddButton": "اضافة",
   "addPraise": "أضافة عداد",
-  "dialogMissingDataError": "ادخل اسم العداد و قيمه العداد",
+  "dialogMissingDataError": "ادخل اسم العداد",
   "dialogPraiseValueError": "ادخل قيمه العداد بشكل صحيح",
   "yesButton": "نعم",
   "noButton": "لا",
@@ -15,5 +15,8 @@
   "dialogEditButton": "تعديل",
   "dialogDuplicateDataError": "العداد مستخدم بالفعل",
   "MorningAzkar": "اذكار الصباح",
-  "EvningAzkar": "اذكار المساء"
+  "EvningAzkar": "اذكار المساء",
+  "close": "اغلاق",
+  "popupTitle": "مبروك ,اكملت التحدى",
+  "myChallenges": "تحدياتى"
 }
