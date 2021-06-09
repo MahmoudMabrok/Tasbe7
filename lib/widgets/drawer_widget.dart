@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seb7a/helper/db_helper.dart';
 import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/praise.dart';
 
@@ -8,24 +9,21 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  int praiseValue;
-  List<String> praisesList = [];
+  List<dynamic> praisesList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData();
+    DBHelper.getData('praise_table').then((value) {
+      print(value);
+      setState(() {
+        praisesList = value;
+      });
+    });
   }
 
-  void getData() async{
-    await SaveOffline.getPraiseList().then((value) {
-      setState(() {
-        if(value.isNotEmpty) {
-          praisesList = value;
-        }
-    });});
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +34,11 @@ class _AppDrawerState extends State<AppDrawer> {
               children: [
                 //SizedBox(height: 30,),
                 ListTile(
-                  //leading: Icon(Icons.shop),
-                  title: Text(praisesList[position],style: TextStyle(color: Colors.black),),
+                  leading: Image.asset('assets/image/pray.png' , height: 30,color: Colors.blue,),
+                  title: Text(praisesList[position]['praiseName'],style: TextStyle(color: Colors.black),),
                   onTap: (){
-                    SaveOffline.getPraisevalue(praisesList[position]).then((value) => praiseValue = value);
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praisesList[position], praiseValue)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praisesList[position]['praiseName'].toString(), praisesList[position]['praiseValue'] , praisesList[position]['id'])));
                   },
                 ),
                 Container(

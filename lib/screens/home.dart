@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nice_button/NiceButton.dart';
-import 'package:seb7a/helper/save_offline.dart';
+import 'package:seb7a/helper/db_helper.dart';
 import 'package:seb7a/screens/evning_azkar.dart';
 import 'package:seb7a/screens/morning_azkar.dart';
 import 'package:seb7a/screens/praise.dart';
@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
   RegExp numberRegExp = new RegExp("^[0-9]*\$");
   bool checkPraiseExist;
   var firstColor = Color(0xff5b86e5), secondColor = Color(0xff36d1dc);
-
+  int id;
 
   void addNewPraise(BuildContext context) async {
     return showDialog(
@@ -70,20 +70,20 @@ class _HomeState extends State<Home> {
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  SaveOffline.ifPraiseExist(praiseNameController.value.text.toString()).then((value) {
                     setState(() {
-                      checkPraiseExist = value;
-                    });
-                  });
-                  if(checkPraiseExist == true){
-                    ToastMessage.showMessage('dialogDuplicateDataError'.tr().toString(), Colors.red);
-                  } else if(checkPraiseExist == false){
-                    setState(() {
-                      SaveOffline.savePraiseOffline(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()));
+                      DBHelper.addPraise('praise_table', {
+                        'praiseName': praiseNameController.value.text.toString(),
+                        'praiseValue': int.parse(praiseValueController.value.text.toString())
+                      }).then((value) {
+                        setState(() {
+                          id = value[0]['id'];
+                        });
+                        print('success');
+                      }).catchError((error) => print(error));
                       Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()))));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()) , id)));
                     });
-                  }
+                  
                 }
               },
             ),
@@ -150,6 +150,12 @@ class _HomeState extends State<Home> {
     );
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DBHelper.getData('praise_table').then((value) => print(value));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

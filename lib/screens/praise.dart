@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:seb7a/helper/db_helper.dart';
 import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/home.dart';
 import 'package:seb7a/widgets/show_message.dart';
@@ -11,8 +12,9 @@ import 'package:vibration/vibration.dart';
 class Praise extends StatefulWidget {
   String name;
   int value;
+  int id;
 
-  Praise(this.name, this.value);
+  Praise(this.name, this.value , this.id);
 
   @override
   _PraiseState createState() => _PraiseState();
@@ -20,18 +22,10 @@ class Praise extends StatefulWidget {
 
 class _PraiseState extends State<Praise> {
 
-  TextEditingController praiseNameController;
-  TextEditingController praiseValueController;
   RegExp numberRegExp = new RegExp("^[0-9]*\$");
   bool checkPraiseExist;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    praiseNameController = new TextEditingController(text: widget.name);
-    praiseValueController = new TextEditingController(text: widget.value.toString());
-  }
+  String name = '';
+  int value = -1;
 
   void clearPraise(BuildContext context){
     showDialog(
@@ -46,7 +40,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     setState(() {
                       widget.value = 0;
-                      SaveOffline.incrementPraiseValue(widget.name, widget.value);
+                      DBHelper.editValue(widget.id, 0);
                       Navigator.pop(context);
                     });
                   },
@@ -75,7 +69,7 @@ class _PraiseState extends State<Praise> {
             actions: <Widget>[
               FlatButton(
                   onPressed: (){
-                    SaveOffline.removePraise(widget.name);
+                    DBHelper.removePraise(widget.id);
                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                   },
                   child: Text("yesButton".tr().toString())
@@ -104,14 +98,25 @@ class _PraiseState extends State<Praise> {
             margin: const EdgeInsets.only(right: 10 , left: 10),
             child: Column(
               children: [
-                TextField(
-                  controller: praiseNameController..text = widget.name,
+                TextFormField(
+                  initialValue: widget.name,
+                  //controller: praiseNameController,
+                  onChanged: (v){
+                    setState(() {
+                      name = v;
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: "dialogTextFieldName".tr().toString(),
                   ),
                 ),
-                TextField(
-                  controller: praiseValueController..text = widget.value.toString(),
+                TextFormField(
+                  initialValue: widget.value.toString(),
+                  onChanged: (v){
+                    setState(() {
+                      value = int.parse(v.toString());
+                    });
+                  },
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(4),
                   ],
@@ -133,19 +138,22 @@ class _PraiseState extends State<Praise> {
             FlatButton(
               child: Text('dialogEditButton'.tr().toString()),
               onPressed: () {
-                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
-                  ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
-                } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
-                  ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
-                } else {
-                  setState(() {
-                    SaveOffline.editPraise(widget.name,praiseNameController.value.text.toString() , int.parse(praiseValueController.value.text.toString()));
-                    widget.name = praiseNameController.value.text.toString();
-                    widget.value = int.parse(praiseValueController.value.text.toString());
+                setState(() {
+                  if(name == ''){
+                    ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
+                  } else if(value != -1 && !numberRegExp.hasMatch(value.toString())){
+                    ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
+                  } else {
+                    widget.name = name;
+                    widget.value = value;
+                    if(value == -1){
+                      DBHelper.editName(widget.id, name, widget.value);
+                    } else if(value != -1){
+                      DBHelper.editName(widget.id, name , value);
+                    }
                     Navigator.pop(context);
-                  });
-
-                }
+                  }
+                });
               },
             ),
           ],
@@ -164,8 +172,10 @@ class _PraiseState extends State<Praise> {
           IconButton(
               icon: Icon(Icons.edit),
               onPressed: (){
-                praiseNameController.clear();
-                praiseValueController.clear();
+                setState(() {
+                  name = widget.name;
+                  value = widget.value;
+                });
                 editPraise(context);
               }
           ),
@@ -202,7 +212,7 @@ class _PraiseState extends State<Praise> {
                       widget.value++;
                       Vibration.vibrate(duration: 50);
                       //HapticFeedback.heavyImpact();
-                      SaveOffline.incrementPraiseValue(widget.name , widget.value);
+                      DBHelper.editValue(widget.id, widget.value).then((_) => print('success')).catchError((e) =>print(e));
                     });
                   },
                 ),

@@ -32,6 +32,7 @@ dependencies:
   nice_button: ^0.1.7
   confetti: ^0.5.5
   hexcolor: ^2.0.3
+  sqflite: ^2.0.0+3
   flutter_localizations: # Add this line
     sdk: flutter
 
@@ -65,6 +66,7 @@ flutter:
     - assets/image/bg.jpeg
     - assets/image/praise.jpeg
     - assets/image/minus.png
+    - assets/image/pray.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
