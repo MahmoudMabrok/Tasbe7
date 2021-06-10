@@ -40,7 +40,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(0),
                           child: Column(
                             children: [
-                              Text('اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ. [آية الكرسي – البقرة 255].',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ. [آية الكرسي – البقرة 255]',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('من قالها حين يصبح أجير من الجن حتى يمسي ومن قالها حين يمسي أجير من الجن حتى يصبح.', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
                             ],
                           ),
@@ -79,8 +79,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ. لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَّسِينَآ أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ. [البقرة 285 – 286]',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
-                              Text('من قرأ آيتين من آخر سورة البقرة في ليلة كفتاه', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
+                              Text(' قُلْ هُوَ ٱللَّهُ أَحَدٌ، ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -89,7 +88,7 @@ class MorningAzkar extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 240),
+                      margin: const EdgeInsets.only(top: 80),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.blue,
@@ -98,7 +97,7 @@ class MorningAzkar extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(20))
                       ),
-                      child: Text('مرة واحدة', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold , fontStyle: FontStyle.italic)),
+                      child: Text('ثلاث مرات', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold , fontStyle: FontStyle.italic)),
                     ),
                   )
                 ],
@@ -118,7 +117,6 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(0),
                           child: Column(
                             children: [
-                              Text('بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ هُوَ ٱللَّهُ أَحَدٌ، ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَد',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ، مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِى ٱلْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ، مَلِكِ ٱلنَّاسِ، إِلَٰهِ ٱلنَّاسِ، مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ، ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ، مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('من قالها حين يصبح وحين يمسى كفته من كل شيء (الإخلاص والمعوذتين)', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
@@ -130,7 +128,7 @@ class MorningAzkar extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 240),
+                      margin: const EdgeInsets.only(top: 180),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.blue,
@@ -159,7 +157,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15  ),
                           child: Column(
                             children: [
-                              Text('أَمْسَيْـنا وَأَمْسـى المـلكُ لله وَالحَمدُ لله، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذهِ اللَّـيْلَةِ وَخَـيرَ ما بَعْـدَهـا، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذهِ اللَّـيْلةِ وَشَرِّ ما بَعْـدَهـا، رَبِّ أَعـوذُ بِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('أَصْـبَحْنا وَأَصْـبَحَ المُـلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم وَخَـيرَ ما بَعْـدَه، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُ بِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -275,7 +273,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('اللّهُـمَّ إِنِّـي أَمسيتُ أُشْـهِدُك ، وَأُشْـهِدُ حَمَلَـةَ عَـرْشِـك، وَمَلَائِكَتَكَ، وَجَمـيعَ خَلْـقِك، أَنَّـكَ أَنْـتَ اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك، وَأَنَّ ُ مُحَمّـداً عَبْـدُكَ وَرَسـولُـك',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('اللّهُـمَّ إِنِّـي أَصْبَـحْتُ أُشْـهِدُك، وَأُشْـهِدُ حَمَلَـةَ عَـرْشِـك، وَمَلَائِكَتَكَ، وَجَمـيعَ خَلْـقِك، أَنَّـكَ أَنْـتَ اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك، وَأَنَّ ُ مُحَمّـداً عَبْـدُكَ وَرَسـولُـك',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('من قالها أعتقه الله من النار', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
                             ],
                           ),
@@ -314,7 +312,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('اللّهُـمَّ ما أَمسى بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ خَلْـقِك، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك، فَلَـكَ الْحَمْـدُ وَلَـكَ الشُّكْـر',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('اللّهُـمَّ ما أَصْبَـَحَ بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ خَلْـقِك ، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك ، فَلَـكَ الْحَمْـدُ وَلَـكَ الشُّكْـر',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                               Text('من قالها حين يمسى أدى شكر يومه', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
                             ],
                           ),
@@ -433,7 +431,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('اللّهُـمَّ بِكَ أَمْسَـينا وَبِكَ أَصْـبَحْنا، وَبِكَ نَحْـيا وَبِكَ نَمُـوتُ وَإِلَـيْكَ الْمَصِيرُ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('اللّهُـمَّ بِكَ أَصْـبَحْنا وَبِكَ أَمْسَـينا، وَبِكَ نَحْـيا وَبِكَ نَمُـوتُ وَإِلَـيْكَ النُّـشُور',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -471,7 +469,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('أَمْسَيْنَا عَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('أَصْبَـحْـنا عَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -699,7 +697,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('أَمْسَيْنا وَأَمْسَى الْمُلْكُ للهِ رَبِّ الْعَالَمَيْنِ، اللَّهُمَّ إِنَّي أسْأَلُكَ خَيْرَ هَذَه اللَّيْلَةِ فَتْحَهَا ونَصْرَهَا، ونُوْرَهَا وبَرَكَتهَا، وَهُدَاهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فيهِا وَشَرَّ مَا بَعْدَهَ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('أَصْبَـحْـنا وَأَصْبَـحْ المُـلكُ للهِ رَبِّ العـالَمـين، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ خَـيْرَ هـذا الـيَوْم ، فَـتْحَهُ، وَنَصْـرَهُ، وَنـورَهُ وَبَـرَكَتَـهُ، وَهُـداهُ، وَأَعـوذُ بِـكَ مِـنْ شَـرِّ ما فـيهِ وَشَـرِّ ما بَعْـدَه',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -819,7 +817,7 @@ class MorningAzkar extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text('اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
-                                Text('من صلى علي حين يصبح وحين يمسى أدركته شفاعتي يوم القيامة', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
+                                Text('من صلى عليَّ حين يصبح عشرًا، وحين يمسي عشرًا ، أدركته شفاعتي يوم القيامة. رواه الطبراني', style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
                               ],
                             ),
                           )
@@ -998,6 +996,7 @@ class MorningAzkar extends StatelessWidget {
                 ],
               ),
               Stack(
+                alignment: Alignment.center,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(0),
@@ -1012,7 +1011,7 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءِ قَدِيرِ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلً',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
                             ],
                           ),
                         )
@@ -1021,7 +1020,7 @@ class MorningAzkar extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 85),
+                      margin: const EdgeInsets.only(top: 70),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.blue,
@@ -1090,7 +1089,8 @@ class MorningAzkar extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           child: Column(
                             children: [
-                              Text('سُبْحـانَ اللهِ وَبِحَمْـدِهِ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('لا إلَهَ إلَّا اللَّهُ، وحْدَهُ لا شَرِيكَ له، له المُلْكُ وله الحَمْدُ، وهو علَى كُلِّ شيءٍ قَدِيرٌ',style: TextStyle(fontWeight: FontWeight.bold , fontStyle: FontStyle.italic),),
+                              Text('كانَتْ له عَدْلَ عَشْرِ رِقابٍ، وكُتِبَتْ له مِئَةُ حَسَنَةٍ، ومُحِيَتْ عنْه مِئَةُ سَيِّئَةٍ، وكانَتْ له حِرْزًا مِنَ الشَّيْطانِ يَومَهُ ذلكَ حتَّى يُمْسِيَ، ولَمْ يَأْتِ أحَدٌ بأَفْضَلَ ممَّا جاءَ به، إلَّا أحَدٌ عَمِلَ أكْثَرَ مِن ذلكَ',style: TextStyle(fontWeight: FontWeight.bold ,color: Colors.blue )),
                             ],
                           ),
                         )
@@ -1099,7 +1099,7 @@ class MorningAzkar extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.only(top: 90),
+                      margin: const EdgeInsets.only(top: 170),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.blue,

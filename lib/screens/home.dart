@@ -29,6 +29,9 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))
+          ),
           //title: Text('TextField in Dialog'),
           content: Container(
             height: 115,
@@ -57,19 +60,26 @@ class _HomeState extends State<Home> {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('dialogCancleButton'.tr().toString()),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            FlatButton(
               child: Text('dialogAddButton'.tr().toString()),
               onPressed: () {
-                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
+                if(praiseNameController.value.text.toString().isEmpty){
                   ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
-                } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
+                } else if(praiseValueController.value.text.isNotEmpty && !numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
+                  if(praiseValueController.value.text.isEmpty){
+                    DBHelper.addPraise('praise_table', {
+                      'praiseName': praiseNameController.value.text.toString(),
+                      'praiseValue': 0
+                    }).then((value) {
+                      setState(() {
+                        id = value[0]['id'];
+                      });
+                      print('success');
+                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), 0 , id)));
+                    }).catchError((error) => print(error));
+                  } else if(praiseValueController.value.text.isNotEmpty){
                     setState(() {
                       DBHelper.addPraise('praise_table', {
                         'praiseName': praiseNameController.value.text.toString(),
@@ -79,13 +89,17 @@ class _HomeState extends State<Home> {
                           id = value[0]['id'];
                         });
                         print('success');
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()) , id)));
                       }).catchError((error) => print(error));
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()) , id)));
                     });
-                  
+                  }
                 }
               },
+            ),
+            FlatButton(
+                child: Text('dialogCancleButton'.tr().toString() , style: TextStyle(color: Colors.red),),
+                onPressed: ()=>Navigator.pop(context)
             ),
           ],
         );
@@ -98,6 +112,9 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))
+          ),
           //title: Text('TextField in Dialog'),
           content: Container(
             height: 115,
@@ -134,7 +151,7 @@ class _HomeState extends State<Home> {
             FlatButton(
               child: Text('dialogAddButton'.tr().toString()),
               onPressed: () {
-                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.toString().isEmpty){
+                if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.isEmpty){
                   ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
@@ -150,12 +167,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    DBHelper.getData('praise_table').then((value) => print(value));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -34,6 +34,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 215,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -73,6 +74,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 265,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -112,6 +114,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 265,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -153,6 +156,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 210,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -191,6 +195,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 160,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -230,6 +235,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 110,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -269,6 +275,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 160,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -308,6 +315,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 135,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -348,6 +356,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                 children: [
                   Center(
                     child: Container(
+                      height: 110,
                       padding: const EdgeInsets.all(0),
                       margin: const EdgeInsets.all(10),
                       child: Card(
@@ -388,6 +397,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 135,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -427,6 +437,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 110,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -465,6 +476,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 135,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -503,6 +515,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 106,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -541,6 +554,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 110,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -579,6 +593,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 110,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -617,6 +632,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 185,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -655,6 +671,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 106,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -693,6 +710,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 132,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -731,6 +749,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 158,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -770,6 +789,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                 alignment: Alignment.center,
                 children: [
                   Container(
+                    height: 80,
                     width: double.infinity,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
@@ -812,6 +832,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
+                      height: 132,
                       padding: const EdgeInsets.all(0),
                       margin: const EdgeInsets.all(5),
                       child: Card(
@@ -852,6 +873,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 106,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -890,6 +912,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 132,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -929,6 +952,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                 alignment: Alignment.center,
                 children: [
                   Container(
+                    height: 90,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -968,6 +992,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                 alignment: Alignment.center,
                 children: [
                   Container(
+                    height: 95,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -1006,6 +1031,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 110,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -1044,6 +1070,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
               Stack(
                 children: [
                   Container(
+                    height: 184,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),
                     child: Card(
@@ -1083,6 +1110,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
                 alignment: Alignment.center,
                 children: [
                   Container(
+                    height: 80,
                     width: double.infinity,
                     padding: const EdgeInsets.all(0),
                     margin: const EdgeInsets.all(5),

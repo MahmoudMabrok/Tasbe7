@@ -33,14 +33,25 @@ class _AppDrawerState extends State<AppDrawer> {
             return Column(
               children: [
                 //SizedBox(height: 30,),
-                ListTile(
-                  leading: Image.asset('assets/image/pray.png' , height: 30,color: Colors.blue,),
-                  title: Text(praisesList[position]['praiseName'],style: TextStyle(color: Colors.black),),
-                  onTap: (){
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praisesList[position]['praiseName'].toString(), praisesList[position]['praiseValue'] , praisesList[position]['id'])));
-                  },
-                ),
+                   ListTile(
+                     leading: Image.asset('assets/image/pray.png' , height: 30,color: Colors.blue,),
+                     trailing: Container(
+                         width: 30,
+                         height: 30,
+                         decoration: BoxDecoration(
+                             color: Colors.blue,
+                             borderRadius: BorderRadius.circular(100),
+                             border: Border.all(width: 2, color: Colors.blue)),
+                         child: Center(
+                             child: praisesList[position]['praiseValue'] > 99 ? Text('+99',style: TextStyle(color: Colors.white , fontSize: 12),) : Text(praisesList[position]['praiseValue'].toString(),style: TextStyle(color: Colors.white , fontSize: 12),)
+                         )
+                     ),
+                     title: Text(praisesList[position]['praiseName'],style: TextStyle(color: Colors.black),),
+                     onTap: (){
+                       Navigator.pop(context);
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praisesList[position]['praiseName'].toString(), praisesList[position]['praiseValue'] , praisesList[position]['id'])));
+                     },
+                   ),
                 Container(
                   margin: const EdgeInsets.only(right: 10 , left: 10),
                   child: Divider(

@@ -33,6 +33,9 @@ class _PraiseState extends State<Praise> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))
+            ),
             //title: Text("Alert Dialog"),
             content: Text("clearPraise".tr().toString()),
             actions: <Widget>[
@@ -64,6 +67,9 @@ class _PraiseState extends State<Praise> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))
+            ),
             //title: Text("Alert Dialog"),
             content: Text("deletePraise".tr().toString()),
             actions: <Widget>[
@@ -91,6 +97,9 @@ class _PraiseState extends State<Praise> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))
+          ),
           //title: Text('TextField in Dialog'),
           content: Container(
             height: 115,

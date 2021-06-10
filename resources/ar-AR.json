@@ -1,7 +1,7 @@
 {
   "appName": "تسابيح",
   "homeAppBarTittle": "تسابيح",
-  "dialogTextFieldName": "الاسم",
+  "dialogTextFieldName": "الاسم*",
   "dialogTextFieldValue": "القيمة",
   "dialogCancleButton": "الغاء",
   "dialogAddButton": "اضافة",
