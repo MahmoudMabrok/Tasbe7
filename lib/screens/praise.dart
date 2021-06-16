@@ -26,6 +26,7 @@ class _PraiseState extends State<Praise> {
   bool checkPraiseExist;
   String name = '';
   int value = -1;
+  Color buttonColor = HexColor("D6A472");
 
   void clearPraise(BuildContext context){
     showDialog(
@@ -199,7 +200,7 @@ class _PraiseState extends State<Praise> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/image/praise.jpeg'), fit: BoxFit.cover,),
+              image: AssetImage('assets/image/one.jpeg'), fit: BoxFit.cover,),
             //shape: BoxShape.circle,
           ),
           child: Column(
@@ -215,7 +216,10 @@ class _PraiseState extends State<Praise> {
                 height: 200,
                 child: MaterialButton(
                   shape: CircleBorder(side: BorderSide(width: 1,)),
-                  color: Colors.blueGrey,
+                  child: Center(
+                    child: Text('اضفط هنا' , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 40),),
+                  ),
+                  color: buttonColor,
                   onPressed: (){
                     setState(() {
                       widget.value++;

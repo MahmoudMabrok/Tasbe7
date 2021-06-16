@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:nice_button/NiceButton.dart';
 import 'package:seb7a/helper/db_helper.dart';
 import 'package:seb7a/screens/evning_azkar.dart';
 import 'package:seb7a/screens/morning_azkar.dart';
+import 'package:seb7a/screens/my_praises.dart';
 import 'package:seb7a/screens/praise.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:seb7a/screens/praise_competition.dart';
@@ -107,7 +109,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void addPraiseChallenge(BuildContext context) async {
+  void addPraiseChallenge(BuildContext context) async{
     return showDialog(
       context: context,
       builder: (context) {
@@ -134,7 +136,7 @@ class _HomeState extends State<Home> {
                     LengthLimitingTextInputFormatter(4),
                   ],
                   decoration: InputDecoration(
-                    hintText: "dialogTextFieldValue".tr().toString(),
+                    hintText: "challenageDialogTextFieldValue".tr().toString(),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -143,22 +145,22 @@ class _HomeState extends State<Home> {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('dialogCancleButton'.tr().toString()),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            FlatButton(
               child: Text('dialogAddButton'.tr().toString()),
               onPressed: () {
                 if(praiseNameController.value.text.toString().isEmpty || praiseValueController.value.text.isEmpty){
-                  ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
+                  ToastMessage.showMessage('challengDialogMissingDataError'.tr().toString(), Colors.red);
                 } else if(!numberRegExp.hasMatch(praiseValueController.text.toString())){
                   ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
                   Navigator.pop(context);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Praisecompetition(praiseNameController.value.text.toString(), 0 , int.parse(praiseValueController.value.text.toString()))));
                 }
+              },
+            ),
+            FlatButton(
+              child: Text('dialogCancleButton'.tr().toString() , style: TextStyle(color: Colors.red),),
+              onPressed: () {
+                Navigator.pop(context);
               },
             ),
           ],
@@ -170,7 +172,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      //drawer: AppDrawer(),
       appBar: AppBar(
         title: Text("homeAppBarTittle".tr().toString() , style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
@@ -208,6 +210,14 @@ class _HomeState extends State<Home> {
                 praiseValueController.clear();
                 addPraiseChallenge(context);
               }
+            ),
+            SizedBox(height: 20,),
+            NiceButton(
+              radius: 40,
+              padding: const EdgeInsets.all(15),
+              text: "myPraises".tr().toString(),
+              gradientColors: [secondColor, firstColor],
+              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MyPraises())),
             ),
             SizedBox(height: 20,),
             NiceButton(
