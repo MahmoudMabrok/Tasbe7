@@ -15,19 +15,17 @@ class EvningAzkar extends StatefulWidget {
 
 class _EvningAzkarState extends State<EvningAzkar> {
 
-  List data = [];
+  List evningAzkar = [];
 
-  Future<String> loadJsonData() async {
-    var jsonText = await rootBundle.loadString('resources/evning_azkar.json');
-    setState(() => data = json.decode(jsonText));
-    print(data);
-    return 'success';
+  Future<void> loadData() async {
+    var data = await rootBundle.loadString('resources/evning_azkar.json');
+    setState(() => evningAzkar = json.decode(data));
   }
 
   @override
   void initState() {
     super.initState();
-    this.loadJsonData();
+    this.loadData();
   }
 
   @override
@@ -45,8 +43,8 @@ class _EvningAzkarState extends State<EvningAzkar> {
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: ListView.builder(itemCount: data.length , itemBuilder: (ctx , pos){
-          return AzkarItem(description: data[pos]['name'],value: data[pos]['benefit'],number: data[pos]['number']);
+        child: ListView.builder(itemCount: evningAzkar.length , itemBuilder: (ctx , pos){
+          return AzkarItem(description: evningAzkar[pos]['name'],value: evningAzkar[pos]['benefit'],number: evningAzkar[pos]['number']);
         }),
       ),
     );
