@@ -2,7 +2,7 @@
     package="com.example.seb7a">
     <uses-permission android:name="android.permission.VIBRATE" />
    <application
-        android:label="Tasabeh"
+        android:label="تسابيح"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

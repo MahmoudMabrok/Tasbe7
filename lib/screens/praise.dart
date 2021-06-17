@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:seb7a/helper/db_helper.dart';
-import 'package:seb7a/helper/save_offline.dart';
 import 'package:seb7a/screens/home.dart';
 import 'package:seb7a/widgets/show_message.dart';
 import 'package:vibration/vibration.dart';
@@ -42,6 +41,13 @@ class _PraiseState extends State<Praise> {
             actions: <Widget>[
               FlatButton(
                   onPressed: (){
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text("noButton".tr().toString() , style: TextStyle(color: Colors.red),)
+              ),
+
+              FlatButton(
+                  onPressed: (){
                     setState(() {
                       widget.value = 0;
                       DBHelper.editValue(widget.id, 0);
@@ -49,13 +55,6 @@ class _PraiseState extends State<Praise> {
                     });
                   },
                   child: Text("yesButton".tr().toString())
-
-              ),
-              FlatButton(
-                  onPressed: (){
-                    Navigator.of(context).pop(true);
-                  },
-                  child: Text("noButton".tr().toString())
               ),
             ],
           );
@@ -86,7 +85,7 @@ class _PraiseState extends State<Praise> {
                   onPressed: (){
                     Navigator.of(context).pop(true);
                   },
-                  child: Text("noButton".tr().toString())
+                  child: Text("noButton".tr().toString() , style: TextStyle(color: Colors.red))
               ),
             ],
           );
@@ -140,7 +139,7 @@ class _PraiseState extends State<Praise> {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('dialogCancleButton'.tr().toString()),
+              child: Text('dialogCancleButton'.tr().toString() , style: TextStyle(color: Colors.red)),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -217,7 +216,7 @@ class _PraiseState extends State<Praise> {
                 child: MaterialButton(
                   shape: CircleBorder(side: BorderSide(width: 1,)),
                   child: Center(
-                    child: Text('اضفط هنا' , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 40),),
+                    child: Text('clickHere'.tr().toString() , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 40),),
                   ),
                   color: buttonColor,
                   onPressed: (){
@@ -243,7 +242,7 @@ class _PraiseState extends State<Praise> {
                           Vibration.vibrate(duration: 50);
                           if(widget.value>0){
                             widget.value--;
-                            SaveOffline.incrementPraiseValue(widget.name, widget.value);
+                            DBHelper.editValue(widget.id, widget.value).then((_) => print('success')).catchError((e) =>print(e));
                           }
                         });
                       },

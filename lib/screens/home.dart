@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:nice_button/NiceButton.dart';
 import 'package:seb7a/helper/db_helper.dart';
 import 'package:seb7a/screens/evning_azkar.dart';
-import 'package:seb7a/screens/morning_azkar.dart';
 import 'package:seb7a/screens/my_praises.dart';
 import 'package:seb7a/screens/praise.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:seb7a/screens/praise_competition.dart';
-import 'package:seb7a/widgets/drawer_widget.dart';
 import 'package:seb7a/widgets/show_message.dart';
+import 'morning_azkar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -35,29 +33,31 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.all(Radius.circular(20.0))
           ),
           //title: Text('TextField in Dialog'),
-          content: Container(
-            height: 115,
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(right: 10 , left: 10),
-            child: Column(
-              children: [
-                TextField(
-                  controller: praiseNameController,
-                  decoration: InputDecoration(
-                    hintText: "dialogTextFieldName".tr().toString(),
+          content: SingleChildScrollView(
+            child: Container(
+              height: 115,
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(right: 10 , left: 10),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: praiseNameController,
+                    decoration: InputDecoration(
+                      hintText: "dialogTextFieldName".tr().toString(),
+                    ),
                   ),
-                ),
-                TextField(
-                  controller: praiseValueController,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(4),
-                  ],
-                  decoration: InputDecoration(
-                    hintText: "dialogTextFieldValue".tr().toString(),
+                  TextField(
+                    controller: praiseValueController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(4),
+                    ],
+                    decoration: InputDecoration(
+                      hintText: "dialogTextFieldValue".tr().toString(),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                  keyboardType: TextInputType.number,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           actions: <Widget>[
@@ -179,65 +179,68 @@ class _HomeState extends State<Home> {
       ),
       body:  Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            NiceButton(
-              radius: 40,
-              padding: const EdgeInsets.all(15),
-              text: "addPraise".tr().toString(),
-              gradientColors: [secondColor, firstColor],
-              onPressed: (){
-                praiseNameController.clear();
-                praiseValueController.clear();
-                addNewPraise(context);
-              }
-            ),
-            SizedBox(height: 20,),
-            NiceButton(
-              radius: 40,
-              padding: const EdgeInsets.all(15),
-              text: "myChallenges".tr().toString(),
-              gradientColors: [secondColor, firstColor],
-              onPressed: (){
-                praiseNameController.clear();
-                praiseValueController.clear();
-                addPraiseChallenge(context);
-              }
-            ),
-            SizedBox(height: 20,),
-            NiceButton(
-              radius: 40,
-              padding: const EdgeInsets.all(15),
-              text: "myPraises".tr().toString(),
-              gradientColors: [secondColor, firstColor],
-              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MyPraises())),
-            ),
-            SizedBox(height: 20,),
-            NiceButton(
-              radius: 40,
-              padding: const EdgeInsets.all(15),
-              text: "MorningAzkar".tr().toString(),
-              gradientColors: [secondColor, firstColor],
-              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MorningAzkar())),
-            ),
-            SizedBox(height: 20,),
-            NiceButton(
-              radius: 40,
-              padding: const EdgeInsets.all(15),
-              text: "EvningAzkar".tr().toString(),
-              gradientColors: [secondColor, firstColor],
-              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => EvningAzkar())),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 130,),
+              NiceButton(
+                  radius: 40,
+                  padding: const EdgeInsets.all(15),
+                  text: "addPraise".tr().toString(),
+                  gradientColors: [secondColor, firstColor],
+                  onPressed: (){
+                    praiseNameController.clear();
+                    praiseValueController.clear();
+                    addNewPraise(context);
+                  }
+              ),
+              SizedBox(height: 20,),
+              NiceButton(
+                  radius: 40,
+                  padding: const EdgeInsets.all(15),
+                  text: "myChallenges".tr().toString(),
+                  gradientColors: [secondColor, firstColor],
+                  onPressed: (){
+                    praiseNameController.clear();
+                    praiseValueController.clear();
+                    addPraiseChallenge(context);
+                  }
+              ),
+              SizedBox(height: 20,),
+              NiceButton(
+                radius: 40,
+                padding: const EdgeInsets.all(15),
+                text: "myPraises".tr().toString(),
+                gradientColors: [secondColor, firstColor],
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MyPraises())),
+              ),
+              SizedBox(height: 20,),
+              NiceButton(
+                radius: 40,
+                padding: const EdgeInsets.all(15),
+                text: "MorningAzkar".tr().toString(),
+                gradientColors: [secondColor, firstColor],
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => Morningazkar())),
+              ),
+              SizedBox(height: 20,),
+              NiceButton(
+                radius: 40,
+                padding: const EdgeInsets.all(15),
+                text: "EvningAzkar".tr().toString(),
+                gradientColors: [secondColor, firstColor],
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => EvningAzkar())),
+              ),
+            ],
+          ),
         ),
-
       ),
     );
   }

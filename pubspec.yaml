@@ -66,10 +66,9 @@ flutter:
   assets:
     - resources/ar-AR.json
     - resources/evning_azkar.json
+    - resources/morning_azkar.json
     - assets/image/bg.jpeg
-    - assets/image/praise.jpeg
     - assets/image/minus.png
-    - assets/image/pray.png
     - assets/image/appicon.jpeg
     - assets/image/one.jpeg
   #   - images/a_dot_ham.jpeg

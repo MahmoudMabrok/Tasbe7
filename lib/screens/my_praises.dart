@@ -13,18 +13,31 @@ class MyPraises extends StatefulWidget {
 class _MyPraisesState extends State<MyPraises> {
 
   List<dynamic> praisesList = [];
+  final snackBar = SnackBar(
+    content: Text('noPraisesExist'.tr().toString()),
+    action: SnackBarAction(
+      label: 'ok'.tr().toString(),
+      onPressed: () {
+        // Some code to undo the change.
+      },
+    ),
+  );
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     DBHelper.getData('praise_table').then((value) {
-      print(value);
       setState(() {
         praisesList = value;
+        if(praisesList.isEmpty){
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       });
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +54,7 @@ class _MyPraisesState extends State<MyPraises> {
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: ListView.builder(itemCount: praisesList.length , itemBuilder: (ctx , pos){
+        child: praisesList.isNotEmpty ? ListView.builder(itemCount: praisesList.length , itemBuilder: (ctx , pos){
           return Container(
             margin: const EdgeInsets.all(10),
             child: Card(
@@ -59,7 +72,8 @@ class _MyPraisesState extends State<MyPraises> {
               ),
             ),
           );
-        }),
+        }) : SizedBox()
+
       )
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_beautiful_popup/main.dart';
@@ -27,8 +26,7 @@ class _PraisecompetitionState extends State<Praisecompetition> {
 
   @override
   void initState() {
-    _controllerBottomCenter =
-        ConfettiController(duration: const Duration(seconds: 5));
+    _controllerBottomCenter = ConfettiController(duration: const Duration(seconds: 5));
     super.initState();
   }
 
@@ -74,6 +72,12 @@ class _PraisecompetitionState extends State<Praisecompetition> {
             actions: <Widget>[
               FlatButton(
                   onPressed: (){
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text("noButton".tr().toString() , style: TextStyle(color: Colors.red))
+              ),
+              FlatButton(
+                  onPressed: (){
                     setState(() {
                       widget.initialValue = 0;
                       changeButtonColor();
@@ -82,12 +86,6 @@ class _PraisecompetitionState extends State<Praisecompetition> {
                   },
                   child: Text("yesButton".tr().toString())
 
-              ),
-              FlatButton(
-                  onPressed: (){
-                    Navigator.of(context).pop(true);
-                  },
-                  child: Text("noButton".tr().toString())
               ),
             ],
           );
@@ -131,7 +129,7 @@ class _PraisecompetitionState extends State<Praisecompetition> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/image/praise.jpeg'), fit: BoxFit.cover,),
+              image: AssetImage('assets/image/one.jpeg'), fit: BoxFit.cover,),
             //shape: BoxShape.circle,
           ),
           child: Column(
@@ -178,6 +176,7 @@ class _PraisecompetitionState extends State<Praisecompetition> {
                                 popup.show(
                                   title: 'popupTitle'.tr().toString(),
                                   content: '',
+                                  close: SizedBox(),
                                   actions: [
                                     popup.button(
                                       label: 'close'.tr().toString(),
