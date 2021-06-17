@@ -61,7 +61,7 @@ class _MyPraisesState extends State<MyPraises> {
               elevation: 8,
               child: ListTile(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praisesList[pos]['praiseName'].toString(), praisesList[pos]['praiseValue'] , praisesList[pos]['id'])));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Praise(praisesList[pos]['praiseName'].toString(), praisesList[pos]['praiseValue'] , praisesList[pos]['id'])));
                 },
                 leading:CircleAvatar(
                   backgroundColor: Colors.blue,
