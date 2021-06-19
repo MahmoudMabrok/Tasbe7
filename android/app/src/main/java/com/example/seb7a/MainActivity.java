@@ -1,4 +1,4 @@
-package com.example.seb7a;
+package com.assem.tasabeh;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -15,7 +15,7 @@ class AzkarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
               Radius.circular(15.0) //                 <--- border radius here
@@ -36,9 +36,9 @@ class AzkarItem extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(description , style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(description , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 15),),
                 SizedBox(height: 8,),
-                Text(value)
+                Text(value , style: TextStyle(fontSize: 16),)
               ],
             ),
           ),

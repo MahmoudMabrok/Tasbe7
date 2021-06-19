@@ -31,7 +31,7 @@ class _MorningazkarState extends State<Morningazkar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EvningAzkar'.tr().toString()),
+        title: Text('MorningAzkar'.tr().toString()),
         centerTitle: true,
       ),
       body: Container(
@@ -42,7 +42,7 @@ class _MorningazkarState extends State<Morningazkar> {
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: ListView.builder(itemCount: morningAzkar.length , itemBuilder: (ctx , pos){
+        child: ListView.builder(physics:BouncingScrollPhysics() , itemCount: morningAzkar.length , itemBuilder: (ctx , pos){
           return AzkarItem(description: morningAzkar[pos]['name'],value: morningAzkar[pos]['benefit'],number: morningAzkar[pos]['number']);
         }),
       ),

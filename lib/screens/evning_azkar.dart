@@ -42,7 +42,7 @@ class _EvningAzkarState extends State<EvningAzkar> {
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: ListView.builder(itemCount: evningAzkar.length , itemBuilder: (ctx , pos){
+        child: ListView.builder(physics:BouncingScrollPhysics() , itemCount: evningAzkar.length , itemBuilder: (ctx , pos){
           return AzkarItem(description: evningAzkar[pos]['name'],value: evningAzkar[pos]['benefit'],number: evningAzkar[pos]['number']);
         }),
       ),

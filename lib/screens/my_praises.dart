@@ -54,7 +54,7 @@ class _MyPraisesState extends State<MyPraises> {
             image: AssetImage('assets/image/bg.jpeg'), fit: BoxFit.fill,),
           //shape: BoxShape.circle,
         ),
-        child: praisesList.isNotEmpty ? ListView.builder(itemCount: praisesList.length , itemBuilder: (ctx , pos){
+        child: praisesList.isNotEmpty ? ListView.builder(physics:BouncingScrollPhysics() ,itemCount: praisesList.length , itemBuilder: (ctx , pos){
           return Container(
             margin: const EdgeInsets.all(10),
             child: Card(
