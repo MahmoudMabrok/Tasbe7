@@ -216,7 +216,7 @@ class _PraiseState extends State<Praise> {
                 child: MaterialButton(
                   shape: CircleBorder(side: BorderSide(width: 1,)),
                   child: Center(
-                    child: Text('clickHere'.tr().toString() , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 40),),
+                    child: Text('clickHere'.tr().toString() , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 30),),
                   ),
                   color: buttonColor,
                   onPressed: (){
@@ -234,18 +234,28 @@ class _PraiseState extends State<Praise> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(icon: Icon(Icons.delete_rounded),color: Colors.grey  ,iconSize: 50, onPressed: ()=>deletePraise(context)),
-                    InkWell(
-                      child: Image.asset('assets/image/minus.png' , height: 50 , width: 50,),
-                      onTap: (){
-                        setState(() {
-                          Vibration.vibrate(duration: 50);
-                          if(widget.value>0){
-                            widget.value--;
-                            DBHelper.editValue(widget.id, widget.value).then((_) => print('success')).catchError((e) =>print(e));
-                          }
-                        });
-                      },
+                    Column(
+                      children: [
+                        IconButton(icon: Icon(Icons.delete_rounded),color: Colors.white70  ,iconSize: 50, onPressed: ()=>deletePraise(context)),
+                        Text('delete'.tr().toString() , style: TextStyle(color: Colors.white , fontSize: 30),)
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        InkWell(
+                          child: Image.asset('assets/image/minus.png' , height: 50 , width: 50,),
+                          onTap: (){
+                            setState(() {
+                              Vibration.vibrate(duration: 50);
+                              if(widget.value>0){
+                                widget.value--;
+                                DBHelper.editValue(widget.id, widget.value).then((_) => print('success')).catchError((e) =>print(e));
+                              }
+                            });
+                          },
+                        ),
+                        Text('minus'.tr().toString() , style: TextStyle(color: Colors.white , fontSize: 30),)
+                      ],
                     )
                   ],
                 ),

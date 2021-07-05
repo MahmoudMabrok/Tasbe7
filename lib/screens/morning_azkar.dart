@@ -17,7 +17,7 @@ class _MorningazkarState extends State<Morningazkar> {
   List morningAzkar = [];
 
   Future<void> loadData() async {
-    var data = await rootBundle.loadString('resources/evning_azkar.json');
+    var data = await rootBundle.loadString('resources/morning_azkar.json');
     setState(() => morningAzkar = json.decode(data));
   }
 

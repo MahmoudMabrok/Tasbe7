@@ -2,7 +2,7 @@
   "appName": "تسابيح",
   "homeAppBarTittle": "تسابيح",
   "dialogTextFieldName": "اسم الذكر*",
-  "dialogTextFieldValue": "قيمة الذكر",
+  "dialogTextFieldValue": " قيمة الذكر",
   "challenageDialogTextFieldValue": "قيمة الذكر*",
   "dialogCancleButton": "الغاء",
   "dialogAddButton": "إضافة",
@@ -26,5 +26,7 @@
   "myPraises": "أذكاري",
   "clickHere": "أضغط هنا",
   "noPraisesExist": "لا توجد أذكار محفوظة",
-  "ok": "موافق"
+  "ok": "موافق",
+  "delete": "حذف",
+  "minus": "انقاص"
 }

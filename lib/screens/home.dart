@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
           //title: Text('TextField in Dialog'),
           content: SingleChildScrollView(
             child: Container(
-              height: 115,
+              height: 55,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(right: 10 , left: 10),
               child: Column(
@@ -45,16 +45,6 @@ class _HomeState extends State<Home> {
                     decoration: InputDecoration(
                       hintText: "dialogTextFieldName".tr().toString(),
                     ),
-                  ),
-                  TextField(
-                    controller: praiseValueController,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(4),
-                    ],
-                    decoration: InputDecoration(
-                      hintText: "dialogTextFieldValue".tr().toString(),
-                    ),
-                    keyboardType: TextInputType.number,
                   ),
                 ],
               ),
@@ -66,36 +56,18 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 if(praiseNameController.value.text.toString().isEmpty){
                   ToastMessage.showMessage('dialogMissingDataError'.tr().toString(), Colors.red);
-                } else if(praiseValueController.value.text.isNotEmpty && !numberRegExp.hasMatch(praiseValueController.text.toString())){
-                  ToastMessage.showMessage('dialogPraiseValueError'.tr().toString(), Colors.red);
                 } else {
-                  if(praiseValueController.value.text.isEmpty){
-                    DBHelper.addPraise('praise_table', {
-                      'praiseName': praiseNameController.value.text.toString(),
-                      'praiseValue': 0
-                    }).then((value) {
-                      setState(() {
-                        id = value[0]['id'];
-                      });
-                      print('success');
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), 0 , id)));
-                    }).catchError((error) => print(error));
-                  } else if(praiseValueController.value.text.isNotEmpty){
+                  DBHelper.addPraise('praise_table', {
+                    'praiseName': praiseNameController.value.text.toString(),
+                    'praiseValue': 0
+                  }).then((value) {
                     setState(() {
-                      DBHelper.addPraise('praise_table', {
-                        'praiseName': praiseNameController.value.text.toString(),
-                        'praiseValue': int.parse(praiseValueController.value.text.toString())
-                      }).then((value) {
-                        setState(() {
-                          id = value[0]['id'];
-                        });
-                        print('success');
-                        Navigator.pop(context);
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), int.parse(praiseValueController.value.text.toString()) , id)));
-                      }).catchError((error) => print(error));
+                      id = value[0]['id'];
                     });
-                  }
+                    print('success');
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Praise(praiseNameController.value.text.toString(), 0 , id)));
+                  }).catchError((error) => print(error));
                 }
               },
             ),
