@@ -13,6 +13,7 @@ class MyPraises extends StatefulWidget {
 class _MyPraisesState extends State<MyPraises> {
 
   List<dynamic> praisesList = [];
+  
   final snackBar = SnackBar(
     content: Text('noPraisesExist'.tr().toString()),
     action: SnackBarAction(
@@ -37,8 +38,6 @@ class _MyPraisesState extends State<MyPraises> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +54,25 @@ class _MyPraisesState extends State<MyPraises> {
           //shape: BoxShape.circle,
         ),
         child: praisesList.isNotEmpty ? ListView.builder(physics:BouncingScrollPhysics() ,itemCount: praisesList.length , itemBuilder: (ctx , pos){
-          return Container(
+          return Dismissible(
+            key: UniqueKey(),
+            direction: DismissDirection.endToStart,
+              onDismissed: (_){
+                setState(() {
+                  DBHelper.removePraise(praisesList[pos]['id']);
+                  praisesList.removeAt(pos);
+                });
+              },
+              background: Container(
+                color: Colors.red,
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ),
+              ),
+            child: Container(
             margin: const EdgeInsets.all(10),
             child: Card(
               elevation: 8,
@@ -71,7 +88,7 @@ class _MyPraisesState extends State<MyPraises> {
                 trailing: Icon(Icons.arrow_forward_ios),
               ),
             ),
-          );
+          ));
         }) : SizedBox()
 
       )

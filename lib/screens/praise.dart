@@ -204,12 +204,12 @@ class _PraiseState extends State<Praise> {
           ),
           child: Column(
             children: [
-              SizedBox(height: 40,),
+              SizedBox(height:35,),
               //Max value is = million
               Center(
-                child: Text(widget.value.toString() , style: TextStyle(color: Colors.white , fontSize: 80 , fontWeight: FontWeight.bold),),
+                child: Text(widget.value.toString() , style: TextStyle(color: Colors.white , fontSize: 70 , fontWeight: FontWeight.bold),),
               ),
-              SizedBox(height: 100,),
+              SizedBox(height: 70,),
               Container(
                 width: 200,
                 height: 200,
@@ -229,7 +229,7 @@ class _PraiseState extends State<Praise> {
                   },
                 ),
               ),
-              SizedBox(height: 50,),
+              SizedBox(height: 20,),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

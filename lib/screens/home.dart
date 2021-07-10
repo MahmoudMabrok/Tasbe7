@@ -162,7 +162,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 130,),
+              SizedBox(height: 100,),
               NiceButton(
                   radius: 40,
                   padding: const EdgeInsets.all(15),
